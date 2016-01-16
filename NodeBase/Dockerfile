@@ -18,7 +18,28 @@ RUN echo "US/Pacific" | sudo tee /etc/timezone \
 RUN apt-get update -qqy \
   && apt-get -qqy install \
     xvfb \
+    build-essential checkinstall \ # python2.7 build deps
+    libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev \
   && rm -rf /var/lib/apt/lists/*
+
+#==============
+# python2.7.10 src download
+#==============
+
+RUN cd /usr/src \
+  && wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz \
+  && tar xzf Python-2.7.10.tgz
+
+# python2.7.10 compile
+
+RUN cd Python-2.7.10 \
+  && ./configure \
+  && make altinstall
+
+# python2.7 install selenium
+
+RUN python2.7 -m ensurepip
+RUN python2.7 -m pip install selenium
 
 #==============================
 # Scripts to run Selenium Node
