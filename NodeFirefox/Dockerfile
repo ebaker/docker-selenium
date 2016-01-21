@@ -1,4 +1,4 @@
-FROM selenium/node-base:2.48.2
+FROM ebaker/selenium-node-base:2.48.2-py27
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root

@@ -1,5 +1,5 @@
 FROM selenium/base:2.48.2
-MAINTAINER Selenium <selenium-developers@googlegroups.com>
+MAINTAINER ebaker <eliotbaker@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
@@ -18,7 +18,33 @@ RUN echo "US/Pacific" | sudo tee /etc/timezone \
 RUN apt-get update -qqy \
   && apt-get -qqy install \
     xvfb \
+    build-essential \
+    checkinstall \
+    libreadline-gplv2-dev \
+    libncursesw5-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    tk-dev \
+    libgdbm-dev \
+    libc6-dev \
+    libbz2-dev \
   && rm -rf /var/lib/apt/lists/*
+
+#==============
+# python2.7.10 src download
+#==============
+
+WORKDIR /usr/src
+RUN wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz \
+  && tar xzf Python-2.7.10.tgz
+
+WORKDIR /usr/src/Python-2.7.10
+
+RUN ./configure \
+  && make altinstall
+
+RUN python2.7 -m ensurepip
+RUN python2.7 -m pip install selenium
 
 #==============================
 # Scripts to run Selenium Node

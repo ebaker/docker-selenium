@@ -1,4 +1,4 @@
-FROM selenium/standalone-firefox:2.48.2
+FROM ebaker/selenium-standalone-firefox:2.48.2-py27
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root
