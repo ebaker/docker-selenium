@@ -1,4 +1,4 @@
-FROM selenium/node-base:python2.7
+FROM selenium/node-base:latest
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root

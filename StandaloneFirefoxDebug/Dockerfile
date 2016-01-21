@@ -1,4 +1,4 @@
-FROM selenium/standalone-firefox:python2.7
+FROM selenium/standalone-firefox:latest
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root

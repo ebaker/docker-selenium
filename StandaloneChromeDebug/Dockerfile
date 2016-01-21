@@ -1,4 +1,4 @@
-FROM selenium/standalone-chrome:python2.7
+FROM selenium/standalone-chrome:latest
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root
